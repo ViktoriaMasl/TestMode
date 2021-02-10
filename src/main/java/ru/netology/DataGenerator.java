@@ -1,9 +1,15 @@
 package ru.netology;
 
+
 import com.github.javafaker.Faker;
-import jdk.jfr.ContentType;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.LogDetail;
+import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
 
 import java.util.Locale;
+
+import static io.restassured.RestAssured.given;
 
 public class DataGenerator {
     private DataGenerator() {
@@ -31,7 +37,8 @@ public class DataGenerator {
     }
 
     public static class UserGenerator {
-        private static RequestSpecification
+
+        private static RequestSpecification requestSpec = new RequestSpecBuilder()
                 .setBaseUri("http://localhost")
                 .setPort(9999)
                 .setAccept(ContentType.JSON)
